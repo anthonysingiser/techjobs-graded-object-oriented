@@ -12,13 +12,13 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-     // First constructor
-     public Job() {
+     
+    public Job() {
         this.id = nextId;
         nextId++;
     }
 
-    // Second constructor
+    
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this(); // calling the first constructor to initialize id
         this.name = name;
@@ -84,5 +84,17 @@ public class Job {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    // Custom toString method
+    @Override
+    public String toString() {
+        return System.lineSeparator() +
+                "ID: " + this.getId() + System.lineSeparator() +
+                "Name: " + (this.getName().isEmpty() ? "Data not available" : this.getName()) + System.lineSeparator() +
+                "Employer: " + (this.getEmployer().getValue().isEmpty() ? "Data not available" : this.getEmployer().getValue()) + System.lineSeparator() +
+                "Location: " + (this.getLocation().getValue().isEmpty() ? "Data not available" : this.getLocation().getValue()) + System.lineSeparator() +
+                "Position Type: " + (this.getPositionType().getValue().isEmpty() ? "Data not available" : this.getPositionType().getValue()) + System.lineSeparator() +
+                "Core Competency: " + (this.getCoreCompetency().getValue().isEmpty() ? "Data not available" : this.getCoreCompetency().getValue()) + System.lineSeparator();
     }
 }

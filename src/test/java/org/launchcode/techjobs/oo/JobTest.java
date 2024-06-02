@@ -42,4 +42,28 @@ public class JobTest {
         // Test that equals returns false
         assertFalse(job1.equals(job2));
     }
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        // Declare and initialize a new Job object with the following data
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        // Get the string representation of the job
+        String jobStr = job.toString();
+
+        // Check that the string starts and ends with a new line
+        assertEquals(System.lineSeparator(), jobStr.substring(0, System.lineSeparator().length()));
+        assertEquals(System.lineSeparator(), jobStr.substring(jobStr.length() - System.lineSeparator().length()));
+    }
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String expectedOutput = System.lineSeparator() +
+                "ID: " + job.getId() + System.lineSeparator() +
+                "Name: Data not available" + System.lineSeparator() +
+                "Employer: Data not available" + System.lineSeparator() +
+                "Location: Data not available" + System.lineSeparator() +
+                "Position Type: Data not available" + System.lineSeparator() +
+                "Core Competency: Data not available" + System.lineSeparator();
+        assertEquals(expectedOutput, job.toString());
+    }
 }
