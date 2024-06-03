@@ -66,4 +66,16 @@ public class JobTest {
                 "Core Competency: Data not available" + System.lineSeparator();
         assertEquals(expectedOutput, job.toString());
     }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String result = job.toString();
+
+        assertTrue(result.contains("ID: "));
+        assertTrue(result.contains("Name: Product tester"));
+        assertTrue(result.contains("Employer: ACME"));
+        assertTrue(result.contains("Location: Desert"));
+        assertTrue(result.contains("Position Type: Quality control"));
+        assertTrue(result.contains("Core Competency: Persistence"));
+    }
 }
